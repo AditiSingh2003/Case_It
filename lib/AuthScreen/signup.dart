@@ -1,6 +1,5 @@
 import 'package:case_it/AuthScreen/login.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import '../Widget/header.dart';
 
 class SignUp extends StatefulWidget {
@@ -35,7 +34,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   Row(
                     children: [
-                      Text("Create Account",
+                      Text("Sign Up to Case-It",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold
@@ -66,20 +65,56 @@ class _SignUpState extends State<SignUp> {
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              Text('Sign Up to Case-It',
+              Container(
+                      width: MediaQuery.of(context).size.width,
+                      child:ElevatedButton(
+                  onPressed: () {
+                    // Add your Google sign-up logic here
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50),
+                    primary: Color(0xFFFFDE32),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                       // Add some spacing between the icon and text
+                      Text(
+                        'Sign Up with Google',
+                        style: TextStyle(fontSize: 16,
+                        color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(width: 8.0),
+                        Image.asset(
+                          'assets/images/images.png',
+                          width: 24.0,
+                          height: 24.0,
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text('Or',
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               TextField(
                 decoration: InputDecoration(
                   hintText: "Enter Your Name",
                   labelText: "Name",
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20,),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -92,7 +127,6 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   hintText: "Enter Your Email",
                   labelText: "Email",
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -105,7 +139,6 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   hintText: "Enter Your Password",
                   labelText: "Password",
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -118,7 +151,6 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   hintText: "Confirm Your Password",
                   labelText: "Confirm Password",
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -144,7 +176,15 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 20,
+              ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Column(
+                    children: [
+                      Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Column(
@@ -171,7 +211,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                   Text("Already have an account?",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                   ),
                   TextButton(
@@ -189,6 +229,10 @@ class _SignUpState extends State<SignUp> {
                   ],
                   ),
                   ],
+              ),
+                    ],
+                  ),  
+              ],
               ),
             ],
           ),

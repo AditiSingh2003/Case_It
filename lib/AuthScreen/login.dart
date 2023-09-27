@@ -1,3 +1,4 @@
+import 'package:case_it/AuthScreen/mobile.dart';
 import 'package:case_it/AuthScreen/signup.dart';
 import 'package:flutter/material.dart';
 import '../Widget/header.dart';
@@ -14,6 +15,7 @@ class _Login_SignupState extends State<Login_Signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 180,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -33,7 +35,7 @@ class _Login_SignupState extends State<Login_Signup> {
                   ),
                   Row(
                     children: [
-                      Text("Login Account",
+                      Text("Login to Account",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold
@@ -192,6 +194,23 @@ class _Login_SignupState extends State<Login_Signup> {
               SizedBox(
                 height: 20,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(onPressed: (){
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MobileOtp()));
+                  },
+                  child: Text('Use Mobile Number',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                  )
+                  ),
+                  Icon(Icons.phone,)
+                ],
+              )
               
             ],
           ),
