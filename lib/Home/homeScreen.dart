@@ -1,3 +1,4 @@
+import 'package:case_it/Home/profile.dart';
 import 'package:case_it/Widget/product.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index){
+    setState(() {
+      _selectedIndex = index;
+      switch(index) {
+        case 0:
+          Navigator.pushNamed(context, '/home');
+          break;
+        case 1:
+          Navigator.pushNamed(context, '/wishlist');
+          break;
+        case 2:
+          Navigator.pushNamed(context, '/cart');
+          break;
+        case 3:
+          Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Profile()));
+          break;
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,9 +143,12 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.account_circle_outlined,
             color: Colors.black,),
             label: 'Account',
+
             backgroundColor: Colors.white,
           ),
         ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       )
     );
   }
