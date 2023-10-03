@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Home/homeScreen.dart';
 import '../Widget/header.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MobileOtp extends StatefulWidget {
   const MobileOtp({super.key});
@@ -10,6 +11,13 @@ class MobileOtp extends StatefulWidget {
 }
 
 class _MobileOtpState extends State<MobileOtp> {
+  TextEditingController countrycode = TextEditingController();
+  var phone = "";
+  @override
+  void initState() {
+    countrycode.text = "+91";
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,8 +115,11 @@ class _MobileOtpState extends State<MobileOtp> {
                   height: 20,
                 ),
                 TextField(
+                  onChanged: (value){
+                    phone = value;
+                  },
                   keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+                decoration: InputDecoration(
                 prefixText: "+91 ",
                 hintText: "Enter Your Name",
                 labelText: "Phone Number",
@@ -122,7 +133,14 @@ class _MobileOtpState extends State<MobileOtp> {
             ),
             
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                await FirebaseAuth.instance.verifyPhoneNumber(
+                  phoneNumber: '${countrycode.text + phone}',
+                  verificationCompleted: (PhoneAuthCredential credential) {},
+                  verificationFailed: (FirebaseAuthException e) {},
+                  codeSent: (String verificationId, int? resendToken) {},
+                  codeAutoRetrievalTimeout: (String verificationId) {},
+                );
                 Navigator.push(context,
                   MaterialPageRoute(builder: (context) => HomeScreen()));
               },
